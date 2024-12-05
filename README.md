@@ -26,3 +26,47 @@ U.Track is a powerful platform designed to centralize and manage your developer 
    ```bash
    git clone https://github.com/ShubhamForYou/U.TRACK.git
    cd U.Track
+## Project Structure 
+   U.track/
+      ├── controllers/
+      │   ├── authController.js
+      │   ├── profileController.js
+      ├── models/
+      │   ├── User.js
+      │   ├── Profile.js
+      ├── views/
+      │   ├── index.ejs
+      │   ├── login.ejs
+      │   ├── dashboard.ejs
+      ├── routes/
+      │   ├── authRoutes.js
+      │   ├── profileRoutes.js
+      ├── public/
+      │   ├── css/
+      │   └── js/
+      ├── .env
+      ├── .gitignore
+      ├── package.json
+      ├── server.js
+
+## Contributing
+
+We welcome contributions to U.Track! Here's how you can help:
+
+1. Fork the repository.
+   git fork https://github.com/ShubhamForYou/U.TRACK.git
+   [U.TRACK](https://github.com/ShubhamForYou/U.TRACK.git)
+3. Create a new branch:
+   git checkout -b feature/your-feature-name
+4. Make your changes and commit them:
+   git commit -m "Add some feature"
+5. Push to the branch:
+   git push origin feature/your-feature-name
+6. Open a pull request.
+
+## License
+This project is licensed under the MIT License. See the LICENSE file for more details.
+
+## Contact 
+
+GitHub: [ShubhamForYou](https://github.com/ShubhamForYou)
