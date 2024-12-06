@@ -57,7 +57,7 @@ We welcome contributions to U.Track! Here's how you can help:
    ```bash
    git fork https://github.com/ShubhamForYou/U.TRACK.git
    
-   [U.TRACK](https://github.com/ShubhamForYou/U.TRACK.git)
+[U.TRACK](https://github.com/ShubhamForYou/U.TRACK.git)
 2. Create a new branch:
    ```bash
    git checkout -b feature/your-feature-name
