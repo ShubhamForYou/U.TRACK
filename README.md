@@ -54,17 +54,17 @@ U.Track is a powerful platform designed to centralize and manage your developer 
 We welcome contributions to U.Track! Here's how you can help:
 
 1. Fork the repository.
+   [U.TRACK](https://github.com/ShubhamForYou/U.TRACK.git)
    ```bash
    git fork https://github.com/ShubhamForYou/U.TRACK.git
    
-[U.TRACK](https://github.com/ShubhamForYou/U.TRACK.git)
-2. Create a new branch:
+3. Create a new branch:
    ```bash
    git checkout -b feature/your-feature-name
-3. Make your changes and commit them:
+4. Make your changes and commit them:
    ```bash
    git commit -m "Add some feature"
-4. Push to the branch:
+5. Push to the branch:
    ```bash
    git push origin feature/your-feature-name
 6. Open a pull request.
