@@ -10,8 +10,8 @@ connectDB(process.env.MONGO_URL)
   .then(() => {
     console.log("MongoDB connected successfully");
   })
-  .catch((err) => {
-    console.log(`error: ${err}`);
+  .catch((error) => {
+    console.log(`error: ${error}`);
   });
 
 // middleware
