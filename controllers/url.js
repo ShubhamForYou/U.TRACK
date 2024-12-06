@@ -6,12 +6,13 @@ const createUrl = async (req, res) => {
     res.status(400);
     throw new Error(" all fields are mandatory");
   }
-  const shortUrl = shortid.generate();
-
-  console.log(shortUrl);
+  const shortId = shortid.generate();
+  const shortUrl = `http://localhost:${process.env.PORT}/api/utrack/${shortId}`;
+  console.log(shortId);
   const newUrl = await urlModel.create({
     name,
     redirectUrl,
+    shortId,
     shortUrl,
   });
   res
@@ -20,8 +21,8 @@ const createUrl = async (req, res) => {
 };
 const redirectUrl = async (req, res) => {
   try {
-    const shortUrl = req.params.shortUrl;
-    if (!shortUrl) {
+    const shortId = req.params.shortId;
+    if (!shortId) {
       res.status(404);
       throw new Error("short url not found");
     }
@@ -30,9 +31,11 @@ const redirectUrl = async (req, res) => {
       userAgent: req.headers["user-agent"],
     };
     const urlEntry = await urlModel.findOneAndUpdate(
-      { shortUrl },
-      { $push: { visiterHistory: visitorData } }
+      { shortId },
+      { $push: { visitorHistory: visitorData } }
     );
+
+    // any other way to push visiterHistory
 
     // const urlEntry = await urlModel.findOne({ shortUrl });
     // if (urlEntry) {
@@ -54,4 +57,13 @@ const redirectUrl = async (req, res) => {
   }
 };
 
-module.exports = { createUrl, redirectUrl };
+const getVisiterCount = async (req, res) => {
+  const urlRecord = await urlModel.find({});
+  const visitorCount = {};
+  urlRecord.forEach((entry) => {
+    console.log(`${entry.name} visits: ${entry.visitorHistory.length}`);
+    visitorCount[entry.name] = entry.visitorHistory.length;
+  });
+  res.status(200).json(visitorCount);
+};
+module.exports = { createUrl, redirectUrl, getVisiterCount };

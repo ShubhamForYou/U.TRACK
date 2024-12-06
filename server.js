@@ -3,6 +3,7 @@ const app = express();
 const env = require("dotenv").config();
 const connectDB = require("./connect");
 const urlRouter = require("./routers/url");
+const userRouter = require("./routers/user");
 
 // DB connection
 connectDB(process.env.MONGO_URL)
@@ -19,6 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // routes
 app.use("/api", urlRouter);
+app.use("/api", userRouter);
 
 // app listening
 app.listen(process.env.PORT, () => {

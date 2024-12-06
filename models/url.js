@@ -18,12 +18,17 @@ const urlSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    shortId: {
+      type: String,
+      required: true,
+      unique: true,
+    },
     shortUrl: {
       type: String,
       required: true,
       unique: true,
     },
-    visiterHistory: [visitorSchema],
+    visitorHistory: [visitorSchema],
   },
 
   { timestamps: true }
