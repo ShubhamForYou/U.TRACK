@@ -1,5 +1,7 @@
 const shortid = require("shortid");
 const urlModel = require("../models/url");
+const userModel = require("../models/user");
+// create url
 const createUrl = async (req, res) => {
   const { name, redirectUrl } = req.body;
   if (!name || !redirectUrl) {
@@ -14,11 +16,20 @@ const createUrl = async (req, res) => {
     redirectUrl,
     shortId,
     shortUrl,
+    // createdBy: req.user._id,
   });
+
+  // const user = await userModel.findById(newUrl.createdBy);
+  // if (!user) {
+  //   res.status(404);
+  //   throw new Error("user not found log-in first");
+  // }
   res
     .status(201)
     .json({ msg: `short url created successfully ${newUrl.name}` });
 };
+
+// redirect to Org. UrL
 const redirectUrl = async (req, res) => {
   try {
     const shortId = req.params.shortId;
