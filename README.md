@@ -1,13 +1,15 @@
+# <!-- # U.Track
 
-<!-- # U.Track
-=======
-#                                                                                        "U.Track: Where Your Links Get Noticed."
->>>>>>> 4915f8e4efb0bbdfd4ba03dca57cde53bbf88ae3
+# "U.Track: Where Your Links Get Noticed."
+
+> > > > > > > 4915f8e4efb0bbdfd4ba03dca57cde53bbf88ae3
 
 ## U.Track: Streamlining Your Developer Journey
+
 Welcome to U.Track! This innovative platform centralizes and manages your developer profiles and projects, helping you better understand and enhance your online presence.
 
 ## Why U.Track?
+
 U.Track is designed to provide developers with valuable insights into their online visibility and engagement. By generating short, trackable URLs for your profiles and projects, U.Track helps you monitor how often and by whom your content is being viewed.
 
 ## Table of Contents
@@ -34,28 +36,31 @@ U.Track is designed to provide developers with valuable insights into their onli
    ```bash
    git clone https://github.com/ShubhamForYou/U.TRACK.git
    cd U.Track
+   ```
+
 ## Project Structure
-   U.track/
-      ├── controllers/
-      │   ├── authController.js
-      │   ├── profileController.js
-      ├── models/
-      │   ├── User.js
-      │   ├── Profile.js
-      ├── views/
-      │   ├── index.ejs
-      │   ├── login.ejs
-      │   ├── dashboard.ejs
-      ├── routes/
-      │   ├── authRoutes.js
-      │   ├── profileRoutes.js
-      ├── public/
-      │   ├── css/
-      │   └── js/
-      ├── .env
-      ├── .gitignore
-      ├── package.json
-      ├── server.js
+
+U.track/
+├── controllers/
+│ ├── authController.js
+│ ├── profileController.js
+├── models/
+│ ├── User.js
+│ ├── Profile.js
+├── views/
+│ ├── index.ejs
+│ ├── login.ejs
+│ ├── dashboard.ejs
+├── routes/
+│ ├── authRoutes.js
+│ ├── profileRoutes.js
+├── public/
+│ ├── css/
+│ └── js/
+├── .env
+├── .gitignore
+├── package.json
+├── server.js
 
 ## Contributing
 
@@ -63,21 +68,28 @@ We welcome contributions to U.Track! Here's how you can help:
 
 1. Fork the repository.
    [U.TRACK](https://github.com/ShubhamForYou/U.TRACK.git)
+
    ```bash
    git fork https://github.com/ShubhamForYou/U.TRACK.git
 
-3. Create a new branch:
+   ```
+
+2. Create a new branch:
    ```bash
    git checkout -b feature/your-feature-name
-4. Make your changes and commit them:
+   ```
+3. Make your changes and commit them:
    ```bash
    git commit -m "Add some feature"
-5. Push to the branch:
+   ```
+4. Push to the branch:
    ```bash
    git push origin feature/your-feature-name
-6. Open a pull request.
+   ```
+5. Open a pull request.
 
 ## License
+
 This project is licensed under the MIT License. See the [LICENSE](https://github.com/ShubhamForYou/U.TRACK/blob/main/LICENSE?form=MG0AV3) file for more details.
 
 ## Contact
@@ -229,7 +241,7 @@ This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-## Contact Information\*\*
+## Contact Information
 
 For inquiries, support, or collaboration opportunities, contact us at:
 
