@@ -6,7 +6,7 @@ const {
   getVisiterCount,
 } = require("../controllers/url");
 
-//set controllers
+//set controller
 router.post("/create", createUrl);
 router.get("/utrack/:shortId", redirectUrl);
 router.get("/visitorCount", getVisiterCount);
