@@ -28,11 +28,11 @@ const urlSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    // createdBy: {
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   ref: "user",
-    //   required: true,
-    // },
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "user",
+      required: true,
+    },
     visitorHistory: [visitorSchema],
   },
 

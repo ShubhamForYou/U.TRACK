@@ -9,24 +9,21 @@ const createUrl = async (req, res) => {
     throw new Error(" all fields are mandatory");
   }
   const shortId = shortid.generate();
-  const shortUrl = `http://localhost:${process.env.PORT}/api/utrack/${shortId}`;
+  const shortUrl = `http://localhost://${process.env.PORT}/api/utrack/${shortId}`;
+  // const shortUrl = `${req.protocol}://${req.get("host")}/api/utrack/${shortId}`;
   console.log(shortId);
+
   const newUrl = await urlModel.create({
     name,
     redirectUrl,
     shortId,
     shortUrl,
-    // createdBy: req.user._id,
+    createdBy: req.user.id,
   });
 
-  // const user = await userModel.findById(newUrl.createdBy);
-  // if (!user) {
-  //   res.status(404);
-  //   throw new Error("user not found log-in first");
-  // }
   res
     .status(201)
-    .json({ msg: `short url created successfully ${newUrl.name}` });
+    .json({ msg: `short url created successfully ${newUrl.name}`, newUrl });
 };
 
 // redirect to Org. UrL

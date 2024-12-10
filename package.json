@@ -19,8 +19,8 @@
     "dotenv": "^16.4.7",
     "express-async-handler": "^1.2.0",
     "express.js": "^1.0.0",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.8.3",
-    "node.js": "^0.0.1-security",
     "shortid": "^2.2.16"
   }
 }
