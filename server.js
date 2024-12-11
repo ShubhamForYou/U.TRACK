@@ -4,7 +4,7 @@ const env = require("dotenv").config();
 const connectDB = require("./connect");
 const urlRouter = require("./routers/url");
 const userRouter = require("./routers/user");
-const validateAccessToken = require("./middlewares/validateAccessToken");
+const redirectUrlRouter = require("./routers/urlRedirect");
 
 // DB connection
 connectDB(process.env.MONGO_URL)
@@ -20,8 +20,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // routes
-app.use("/api/url", validateAccessToken, urlRouter);
+app.use("/api/url", urlRouter);
 app.use("/api/user", userRouter);
+app.use("/", redirectUrlRouter);
 
 // app listening
 app.listen(process.env.PORT, () => {
