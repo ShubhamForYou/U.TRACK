@@ -64,7 +64,11 @@ const logIn = asyncHandler(async (req, res) => {
     // res.setHeader("Authorization", `Bearer ${accessToken}`);
 
     // Store the access token in a httpOnly cookie
-    res.cookie("Authorization", accessToken);
+    res.cookie("Authorization", accessToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      maxAge: 30 * 60 * 1000, // 30 minutes
+    });
 
     // if all good render user dash-board
     const urlEntries = await urlModel.find({ createdBy: user.id });
