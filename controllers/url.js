@@ -1,24 +1,21 @@
 const shortid = require("shortid");
 const urlModel = require("../models/url");
-const userModel = require("../models/user");
+
 // create url
 const createUrl = async (req, res) => {
   const { name, redirectUrl } = req.body;
   if (!name || !redirectUrl) {
-    res.status(400);
-    throw new Error(" all fields are mandatory");
+    return res.render("userDashBoard", { msg: "all fields are mandatory" });
   }
   const shortUrlEntry = await urlModel.findOne({
     name,
     createdBy: req.user.id,
   });
   if (shortUrlEntry) {
-    res.status(409);
-    throw new Error("url name already used");
+    return res.render("userDashBoard", { msg: "url name already used" });
   }
   const shortId = shortid.generate();
-  const shortUrl = `${req.protocol}://${req.get("host")}/${shortId}`;
-  console.log(shortId);
+  const shortUrl = `${req.protocol}://${req.get("host")}/r/${shortId}`;
 
   const newUrl = await urlModel.create({
     name,
@@ -27,10 +24,12 @@ const createUrl = async (req, res) => {
     shortUrl,
     createdBy: req.user.id,
   });
-
-  res
-    .status(201)
-    .json({ msg: `short url created successfully ${newUrl.name}`, newUrl });
+  const urlEntries = await urlModel.find({ createdBy: user.id });
+  return res.render("userDashBoard", {
+    msg: `short url created successfully ${newUrl.name} and ShortURL: ${newUrl.shortUrl}`,
+    userAllUrl: urlEntries,
+    userName: req.user.name,
+  });
 };
 
 const getVisiterCount = async (req, res) => {

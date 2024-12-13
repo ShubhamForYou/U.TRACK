@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const userModel = require("../models/user");
 const bcrypt = require("bcrypt");
 const asyncHandler = require("express-async-handler");
+const urlModel = require("../models/url");
 // @desc user sign-in
 // @route POST /api/user/signin
 // @access public
@@ -9,13 +10,11 @@ const signIn = asyncHandler(async (req, res) => {
   const { name, username, email, password } = req.body;
   //  all fields mandatory
   if (!name || !username || !email || !password) {
-    res.status(400);
-    throw new Error("all fields are mandatory");
+    return res.render("signin", { errMsg: "all fields are mandatory" });
   }
   //   user already register
   if (await userModel.findOne({ email })) {
-    res.status(400);
-    throw new Error("user already register");
+    return res.render("login", { errMsg: "user already register" });
   }
   //   password hashing
   const hashPassword = await bcrypt.hash(password, 10);
@@ -26,7 +25,8 @@ const signIn = asyncHandler(async (req, res) => {
     email,
     password: hashPassword,
   });
-  res.status(201).json({ msg: `${newUser.name} welcome to U.track` });
+  // created login first
+  return res.render("login");
 });
 // @desc user log-in
 // @route POST /api/user/login
@@ -35,15 +35,14 @@ const logIn = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   // all fields require
   if (!email || !password) {
-    res.status(400);
-    throw new Error("all fields are mandatory");
+    return res.render("login", { errMsg: "All fields are Mandatory" });
   }
   const user = await userModel.findOne({ email });
   // user not registered
   if (!user) {
-    res.status(401);
-    throw new Error("user is not registered ");
+    return res.render("signin", { errMsg: "User is not registered" });
   }
+
   // comparing password
   if (await bcrypt.compare(password, user.password)) {
     // if password is correct then create access-token for user
@@ -58,15 +57,19 @@ const logIn = asyncHandler(async (req, res) => {
       },
       process.env.ACCESS_TOKEN_SECRET,
       {
-        expiresIn: "10m",
+        expiresIn: "30m",
       }
     );
-    res
-      .status(200)
-      .json({ msg: ` ${user.name} log-in to U.Track`, accessToken });
+    // Set the access token in the header
+    res.setHeader("Authorization", `Bearer ${accessToken}`);
+    // if all good render user dash-board
+    const urlEntries = await urlModel.find({ createdBy: user.id });
+    return res.render("userDashBoard", {
+      userAllUrl: urlEntries,
+      userName: user.name,
+    });
   } else {
-    res.status(401);
-    throw new Error("Invalid email or password");
+    return res.render("login", { errMsg: "Invalid email or password" });
   }
 });
 module.exports = { signIn, logIn };
