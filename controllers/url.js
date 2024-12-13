@@ -24,7 +24,7 @@ const createUrl = async (req, res) => {
     shortUrl,
     createdBy: req.user.id,
   });
-  const urlEntries = await urlModel.find({ createdBy: user.id });
+  const urlEntries = await urlModel.find({ createdBy: req.user.id });
   return res.render("userDashBoard", {
     msg: `short url created successfully ${newUrl.name} and ShortURL: ${newUrl.shortUrl}`,
     userAllUrl: urlEntries,

@@ -1,4 +1,5 @@
 const express = require("express");
+const cookieParser = require("cookie-parser");
 const app = express();
 const env = require("dotenv").config();
 const connectDB = require("./connect");
@@ -16,7 +17,8 @@ connectDB(process.env.MONGO_URL)
   .catch((error) => {
     console.log(`error: ${error}`);
   });
-
+// set up cookies
+app.use(cookieParser());
 // set the view engine to ejs
 app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));

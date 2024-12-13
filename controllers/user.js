@@ -25,8 +25,8 @@ const signIn = asyncHandler(async (req, res) => {
     email,
     password: hashPassword,
   });
-  // created login first
-  return res.render("login");
+  //  login first
+  return res.redirect("/login");
 });
 // @desc user log-in
 // @route POST /api/user/login
@@ -61,7 +61,11 @@ const logIn = asyncHandler(async (req, res) => {
       }
     );
     // Set the access token in the header
-    res.setHeader("Authorization", `Bearer ${accessToken}`);
+    // res.setHeader("Authorization", `Bearer ${accessToken}`);
+
+    // Store the access token in a httpOnly cookie
+    res.cookie("Authorization", accessToken);
+
     // if all good render user dash-board
     const urlEntries = await urlModel.find({ createdBy: user.id });
     return res.render("userDashBoard", {

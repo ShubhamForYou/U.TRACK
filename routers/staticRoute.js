@@ -12,6 +12,6 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 router.get("/userdashboard", validateAccessToken, (req, res) => {
-  res.render("userDashBoard", { userName: req.user.name });
+  res.render("userDashBoard");
 });
 module.exports = router;
