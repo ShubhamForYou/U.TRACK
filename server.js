@@ -2,6 +2,7 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const app = express();
 const env = require("dotenv").config();
+const speedIncrease = require("@vercel/speed-insights");
 const connectDB = require("./connect");
 const path = require("path");
 const urlRouter = require("./routers/url");
